@@ -36,16 +36,16 @@ class Twitts
 		
 		#Si el nombre existe buscamos sus últimos Tweets
 		if @name == req["firstname"]
-
-			#client = my_twitter_client()
+			# Conseguimos el identificador de los seguidores del usuario
 			seguidores = client.friend_ids(@name).take(@number)
-			#print seguidores
+			# Borramos la consulta anterios
 			@user = Hash.new
+			# Por cada amigo sacamos el numero de seguidores
 			seguidores.each do |fid|
 					f = client.user(fid)
 					@user[f.screen_name.to_s] = f.followers_count
 			end
-			#print @user
+			# Ordenamos a nuestros amigos por el numero de seguidores
 			@users = @user.sort_by {|k,v| -v}			
 		end
 
