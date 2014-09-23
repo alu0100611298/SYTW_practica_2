@@ -20,5 +20,5 @@ Escriba una aplicación web en Sinatra similar a la solicitada en la práctica 7
 
 Podemos ejecutarlo de dos formas:
 
-1. `ruby popular.rb` por defecto
-1. `ruby popular.rb [usuario] [nº de amigos]`
+1. `ruby twitter.rb`
+2. Iremos a [http://localhost:9393/](http://localhost:9393/) para poder usar la aplicación
