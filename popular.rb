@@ -22,6 +22,7 @@ class Popular
 		# Ordenamos a nuestros amigos por el numero de seguidores
 		@users = @user.sort_by {|k,v| -v}
 		# Imprimimos el vector
+		puts "Su lista ordenada de amigos:"
 		@users.each do |user,count|
 			puts "#{user},#{count}"
 		end
