@@ -13,6 +13,7 @@ class Twitts
 	def initialize
 		@name = ''
 		@number = 0
+		@number_total = 0
 		@user = Hash.new
 
 	end
@@ -33,6 +34,9 @@ class Twitts
 	    @name = (req["firstname"] && req["firstname"] != '' && client.user?(req["firstname"]) == true ) ? req["firstname"] : ''
 
 		@number = (req["n"] && req["n"].to_i>1 ) ? req["n"].to_i : 1
+		#Numero maximo de consulta para no sobrepasar el ancho de banda
+		@number_total = @number
+		@number = 10 if @number > 10
 		
 		#Si el nombre existe buscamos sus últimos Tweets
 		if @name == req["firstname"]
@@ -43,6 +47,7 @@ class Twitts
 			# Por cada amigo sacamos el numero de seguidores
 			seguidores.each do |fid|
 					f = client.user(fid)
+					# En un hash metemos usuario, nº de seguidores
 					@user[f.screen_name.to_s] = f.followers_count
 			end
 			# Ordenamos a nuestros amigos por el numero de seguidores

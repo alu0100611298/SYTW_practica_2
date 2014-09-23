@@ -90,8 +90,14 @@
 			<%end %>
 
 			<% if @name != ''%>
-				<%if @number>200%>
-					<p id="warning"> Sólo se puede mostrar hasta 200 usuarios </p>
+				<%if @number_total>10%>
+					<p id="warning"> Sólo se pueden consultar hasta 10  usuarios </p>
+					<p>Sus <%= @number %> amigos ordenados :</p>
+					<ol>
+						<% @users.each do |i,j| %> 
+							<li id="col"><%= i %> usuarios: <%= j %><br></li>
+						<% end %>
+					</ol>
 				<%elsif @users.length < @number %>
 					<p id="warning">Sorry! El usuario tiene solo tiene <%= @users.length %> amigos visibles de <%= @number %> 
 					o tiene menos de <%= @number%> amigos</p>
