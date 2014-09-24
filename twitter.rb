@@ -9,7 +9,7 @@ get '/' do
 	@name = ''
 	@number = 0
 	@number_total = 0
-	@user = Hash.new
+	@users = []
 	erb :twitter
 end
 
@@ -28,18 +28,12 @@ post '/' do
 	
 	#Si el nombre existe buscamos sus últimos Tweets
 	if @name == req["firstname"]
-		# Conseguimos el identificador de los seguidores del usuario
-		seguidores = client.friend_ids(@name).take(@number)
-		# Borramos la consulta anterios
-		@user = Hash.new
-		# Por cada amigo sacamos el numero de seguidores
-		seguidores.each do |fid|
-				f = client.user(fid)
-				# En un hash metemos usuario, nº de seguidores
-				@user[f.screen_name.to_s] = f.followers_count
-		end
-		# Ordenamos a nuestros amigos por el numero de seguidores
-		@users = @user.sort_by {|k,v| -v}			
+		# Buscamos a los amigos de ese usuario
+		seguidores = client.friends(@name,{}).take(@number)
+		# Nos quedamos con el nombre y el número de seguidores
+		seguidores = seguidores.map { |i| [i.name , i.followers_count]}
+		# Ordenamos por el número de seguidores
+		@users = seguidores.sort_by!{|k,v| -v}			
 	end
 	erb :twitter
 	#Invoca a erb
