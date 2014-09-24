@@ -92,7 +92,7 @@
 			<% if @name != ''%>
 				<%if @number_total>10%>
 					<p id="warning"> Sólo se pueden consultar hasta 10  usuarios </p>
-					<p>Sus <%= @number %> amigos ordenados :</p>
+					<p>Sus <%= @users.length %> amigos ordenados :</p>
 					<ol>
 						<% @users.each do |i,j| %> 
 							<li id="col"><%= i %> usuarios: <%= j %><br></li>

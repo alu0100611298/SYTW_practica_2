@@ -29,11 +29,12 @@ post '/' do
 	#Si el nombre existe buscamos sus últimos Tweets
 	if @name == req["firstname"]
 		# Buscamos a los amigos de ese usuario
-		seguidores = client.friends(@name,{}).take(@number)
+		seguidores = client.friends(@name,{})
 		# Nos quedamos con el nombre y el número de seguidores
 		seguidores = seguidores.map { |i| [i.name , i.followers_count]}
 		# Ordenamos por el número de seguidores
-		@users = seguidores.sort_by!{|k,v| -v}			
+		@users = seguidores.sort_by!{|k,v| -v}
+		@users.take(@number)
 	end
 	erb :twitter
 	#Invoca a erb
