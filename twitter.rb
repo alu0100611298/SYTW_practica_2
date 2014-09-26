@@ -34,7 +34,8 @@ post '/' do
 		seguidores = seguidores.map { |i| [i.name , i.followers_count]}
 		# Ordenamos por el número de seguidores
 		@users = seguidores.sort_by!{|k,v| -v}
-		@users.take(@number)
+		
+		@users = @users.take(@number)
 	end
 	erb :twitter
 	#Invoca a erb
