@@ -22,7 +22,7 @@ post '/' do
     @name = (req["firstname"] && req["firstname"] != '' && client.user?(req["firstname"]) == true ) ? req["firstname"] : ''
 
 	@number = (req["n"] && req["n"].to_i>1 ) ? req["n"].to_i : 1
-	#Numero maximo de consulta para no sobrepasar el ancho de banda
+	# Se fuerza el máximo de consultas a 10
 	@number_total = @number
 	@number = 10 if @number > 10
 	
@@ -34,7 +34,7 @@ post '/' do
 		seguidores = seguidores.map { |i| [i.name , i.followers_count]}
 		# Ordenamos por el número de seguidores
 		@users = seguidores.sort_by!{|k,v| -v}
-		
+		# De esos usuarios coge 10
 		@users = @users.take(@number)
 	end
 	erb :twitter
