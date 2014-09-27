@@ -17,10 +17,12 @@ Escriba una aplicación web en Sinatra similar a la solicitada en la práctica 7
 
 ## Ejecución
 ------------
+Instalamos las gemas:
+`rake bundle`
 
 Podemos ejecutarlo de dos formas:
 
-1. `ruby twitter.rb`
+1. `rake` o `ruby twitter.rb`
 2. Iremos a [http://localhost:4567/](http://localhost:9393/) para poder usar la aplicación
 
 ## [gh-pages](http://alu0100611298.github.io/SYTW_practica_2)
