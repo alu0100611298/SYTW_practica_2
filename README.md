@@ -11,14 +11,12 @@ Escriba una aplicación web en Sinatra similar a la solicitada en la práctica 7
 ## Instalación
 --------------
 
-1. Instalaremos las gemas necesarias: `bundle install`
+1. Instalaremos las gemas necesarias: `bundle install` o `rake bundle`
 2. Configuraremos el fichero `configure.rb` siguiendo las directrices del fichero `configure.rb.example`
 
 
 ## Ejecución
 ------------
-Instalamos las gemas:
-`rake bundle`
 
 Podemos ejecutarlo de dos formas:
 
